@@ -63,7 +63,7 @@
    	
    	function arrayize($input) 
    	{
-   		return array_map('intval', array_filter( explode(",",$input), 'is_numeric'));
+   		return array_map('floatval', array_filter( explode(",",$input), 'is_numeric'));
    	}
    	//$currentReadings = preg_split("\"",
 
