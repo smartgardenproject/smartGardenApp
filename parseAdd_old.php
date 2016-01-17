@@ -1,4 +1,5 @@
 <?php
+   	//include("connect.php");
    	require 'autoload.php';
    	
    	date_default_timezone_set('America/New_York');
@@ -25,17 +26,15 @@
    	//$airTemp= array();
    	$airTemp=$_GET["airTemp"];
 	$hum=$_GET["hum"];	
+	$waterTemp=$_GET["waterTemp"];
 	$sun=$_GET["sun"];
-	$waterTemp1=$_GET["watT1"];
-	$waterTemp2=$_GET["watT2"];
-	$waterPH=$_GET["PH"];
-	$level=$_GET["level"];
 	$wet=$_GET["wet"];
+	$waterPH=$_GET["waterPH"];
    	$gardenID=$_GET["id"];
    	
    	echo '<br> Garden ID = ' . $gardenID . '<br>';
    	echo $airTemp . '<br>';
-   	echo $waterTemp1 . '<br>';
+   	echo $waterTemp . '<br>';
    	
    	//get garden ID
    	   	
@@ -45,10 +44,34 @@
 
    	$result = $results[0]; 	
    	
+   	//get garden sensors list
+   	$sensors = $result->get("pName");
+   	echo "<br>We are expecting these sensors: " . $sensors; 	
+   	
+   	
+   	/* assign sensor values based on above sensor list
+   	
+   	for ($i = 0; $i < count($sensors); $i++) {
+  		$object = $sensors[$i];
+ 	 	echo $object;
+ 	 	
+	}
+   	
+   	*/
+   	
+   	//assemble sensor array
+   	
+   	function arrayize($input) 
+   	{
+   		return array_map('floatval', array_filter( explode(",",$input), 'is_numeric'));
+   	}
+   	//$currentReadings = preg_split("\"",
+
+   	
    	$reading = new ParseObject("Reading");
    
    	$reading->set("gardenID", $result);
-   	$reading->setArray("readings", [intval($airTemp), intval($hum), intval($sun), intval($waterTemp1), intval($waterTemp2),  floatval($waterPH), intval($level), intval($wet)]);
+   	$reading->setArray("readings", [arrayize($airTemp), arrayize($hum), arrayize($waterTemp), arrayize($sun), arrayize($wet), arrayize($waterPH)]);
    	try {
    		$reading->save();
  echo '<br>New reading created with objectId: ' . $reading->getObjectId() . '<br>';

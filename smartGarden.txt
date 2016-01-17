@@ -1,0 +1,17 @@
+http://localhost/parseAdd.php?id=sJU5cFTI7u&airTemp=93,92&hum=98&waterTemp=74,77,69&sun=15&wet=1&waterPH=5.5
+http://localhost/parseAdd.php?id=sJU5cFTI7u&airTemp=85,82&hum=95&waterTemp=60,64,62&sun=19&wet=0&waterPH=5.6
+
+http://localhost/parseAdd.php?id=QpBYjNdv0Q&sun=20&hum=87&airTemp=82,80&waterTemp=70,72,74&waterPH=5.8&wet=1
+["Sun","Humidity","AirTemp","WaterTemp","pH","Leaks"]
+
+http://localhost/parseAdd.php?id=QpBYjNdv0Q&airTemp=79,72&hum=85&waterTemp=60,64&sun=25,17&wet=1&waterPH=5.2
+http://localhost/parseAdd.php?id=QpBYjNdv0Q&airTemp=76,70&hum=83&waterTemp=58,62&sun=24,16&wet=1&waterPH=5.1
+
+http://localhost/parseAdd.php?id=QpBYjNdv0Q&airTemp=91&hum=95&sun=12&watT1=80&watT2=85&PH=5.6&level=1&wet=0
+
+Issues to fix:
+Reloading of data on the home readings screen
+Need to make the timeline refreshable (via Timeline Component, i guess)
+Need to add a settings page for customizable labels 
+	(would be nice to be able to save label customizations locally - NSuserDefaults)
+
